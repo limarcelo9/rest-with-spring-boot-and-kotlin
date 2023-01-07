@@ -1,13 +1,12 @@
-package br.com.ec
+package br.com.ec.controller
 
 import br.com.ec.exceptions.UnsupportedMathOperationException
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.lang.Exception
 
-@RestController
-class MathController {
+//@RestController
+class MathController1 {
 
     @RequestMapping(value = ["/sum/{numberOne}/{numberTwo}"])
     fun sun(@PathVariable(value = "numberOne") numberOne: String?,
@@ -31,7 +30,7 @@ class MathController {
 
     @RequestMapping(value = ["/mult/{numberOne}/{numberTwo}"])
     fun mult(@PathVariable(value = "numberOne") numberOne: String?,
-            @PathVariable(value = "numberTwo") numberTwo: String?
+             @PathVariable(value = "numberTwo") numberTwo: String?
     ): Double {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
             throw UnsupportedMathOperationException("Please set a numeric value!");
@@ -41,7 +40,7 @@ class MathController {
 
     @RequestMapping(value = ["/div/{numberOne}/{numberTwo}"])
     fun div(@PathVariable(value = "numberOne") numberOne: String?,
-             @PathVariable(value = "numberTwo") numberTwo: String?
+            @PathVariable(value = "numberTwo") numberTwo: String?
     ): Double {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
             throw UnsupportedMathOperationException("Please set a numeric value!");
