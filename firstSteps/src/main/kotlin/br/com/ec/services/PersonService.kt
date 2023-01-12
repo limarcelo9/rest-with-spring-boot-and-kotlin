@@ -1,6 +1,8 @@
 package br.com.ec.services
 
+import br.com.ec.data.vo.v1.PersonVO
 import br.com.ec.exceptions.ResourceNotFoundException
+import br.com.ec.mapper.DozerMapper
 import br.com.ec.model.Person
 import br.com.ec.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,23 +17,27 @@ class PersonService {
 
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
-    fun findAll(): List<Person> {
+    fun findAll(): List<PersonVO> {
         logger.info("Finding all people!")
-        return repository.findAll()
+        val persons = repository.findAll()
+        return DozerMapper.parseListObjects(persons, PersonVO::class.java)
     }
 
-    fun findById(id: Long): Person {
+    fun findById(id: Long): PersonVO {
         logger.info("Finding one person!")
-        return repository.findById(id)
+        val person =  repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
+        return DozerMapper.parseObject(person, PersonVO::class.java)
     }
 
-    fun create(person: Person): Person {
+    fun create(person: PersonVO): PersonVO {
         logger.info("Create one person!")
-        return repository.save(person)
+
+        var entity: Person = DozerMapper.parseObject(person, Person::class.java)
+        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
     }
 
-    fun update(person: Person): Person {
+    fun update(person: PersonVO): PersonVO {
         logger.info("Update one person!")
         val entity =  repository.findById(person.id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
@@ -41,14 +47,13 @@ class PersonService {
         entity.address = person.address
         entity.gender = person.gender
 
-        return repository.save(entity)
+        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
     }
 
     fun delete(id: Long) {
         logger.info("Delete one person!")
         val entity = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
-
         repository.delete(entity)
     }
 
