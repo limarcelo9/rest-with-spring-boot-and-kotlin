@@ -1,6 +1,8 @@
 package br.com.ec.services
 
+import br.com.ec.custom.PersonMapper
 import br.com.ec.data.vo.v1.PersonVO
+import br.com.ec.data.vo.v2.PersonVO as PersonVOV2
 import br.com.ec.exceptions.ResourceNotFoundException
 import br.com.ec.mapper.DozerMapper
 import br.com.ec.model.Person
@@ -14,6 +16,9 @@ class PersonService {
 
     @Autowired
     private lateinit var repository: PersonRepository
+
+    @Autowired
+    private lateinit var mapper: PersonMapper
 
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
@@ -55,6 +60,13 @@ class PersonService {
         val entity = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this ID!") }
         repository.delete(entity)
+    }
+
+    fun createV2(person: PersonVOV2): PersonVOV2 {
+        logger.info("Create one person!")
+
+        var entity: Person = mapper.mapVOToEntity(person)
+        return mapper.mapEntityToVO(repository.save(entity))
     }
 
 }
