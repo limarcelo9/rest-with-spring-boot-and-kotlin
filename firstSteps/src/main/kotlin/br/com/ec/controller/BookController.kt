@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("api/person/v1")
 @Tag(name = "People", description = "endpoint for manage people")
-class PersonController {
+class BookController {
 
     @Autowired
     private lateinit var service: PersonService
