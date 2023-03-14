@@ -1,7 +1,7 @@
-package br.com.ec
+package br.com.ec.unittests.mapper
 
+import br.com.ec.unittests.mocks.MockPerson
 import br.com.ec.data.vo.v1.PersonVO
-import br.com.ec.mapper.DozerMapper
 import br.com.ec.model.Person
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

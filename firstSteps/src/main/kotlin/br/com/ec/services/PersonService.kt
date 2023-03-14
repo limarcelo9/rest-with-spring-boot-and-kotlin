@@ -5,7 +5,7 @@ import br.com.ec.custom.PersonMapper
 import br.com.ec.data.vo.v1.PersonVO
 import br.com.ec.data.vo.v2.PersonVO as PersonVOV2
 import br.com.ec.exceptions.ResourceNotFoundException
-import br.com.ec.mapper.DozerMapper
+import br.com.ec.unittests.mapper.DozerMapper
 import br.com.ec.model.Person
 import br.com.ec.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,4 +1,4 @@
-package br.com.ec
+package br.com.ec.unittests.mocks
 
 import br.com.ec.data.vo.v1.PersonVO
 import br.com.ec.model.Person

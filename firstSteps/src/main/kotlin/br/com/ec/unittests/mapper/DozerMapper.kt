@@ -1,4 +1,4 @@
-package br.com.ec.mapper
+package br.com.ec.unittests.mapper
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder
 import com.github.dozermapper.core.Mapper

@@ -4,7 +4,7 @@ import br.com.ec.controller.BookController
 import br.com.ec.custom.BookMapper
 import br.com.ec.data.vo.v1.BookVO
 import br.com.ec.exceptions.ResourceNotFoundException
-import br.com.ec.mapper.DozerMapper
+import br.com.ec.unittests.mapper.DozerMapper
 import br.com.ec.model.Book
 import br.com.ec.repository.BookRepository
 import org.springframework.beans.factory.annotation.Autowired
